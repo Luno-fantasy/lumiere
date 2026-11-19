@@ -1,0 +1,110 @@
+:root {
+  color-scheme: dark;
+  --studio-bg: #171020;
+  --studio-panel: #2b1e39;
+  --studio-text: #f7eefb;
+  --studio-muted: #d4bbdf;
+  --studio-gold: #e7c893;
+  --studio-border: #8b6d9a;
+}
+
+.studio-nav {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: clamp(0.6rem, 3vw, 1.5rem);
+  max-width: 1280px;
+  margin: auto;
+  padding: 0.4rem max(0.75rem, env(safe-area-inset-right)) 0.4rem max(0.75rem, env(safe-area-inset-left));
+  border-bottom: 1px solid var(--studio-border);
+}
+
+.studio-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--studio-muted);
+  font: 600 clamp(0.75rem, 2.8vw, 0.875rem)/1.3 system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.studio-nav a:first-child {
+  margin-right: auto;
+  color: var(--studio-gold);
+  font-family: Georgia, serif;
+  letter-spacing: 0.1em;
+}
+
+.studio-nav a[aria-current="page"] {
+  color: var(--studio-gold);
+  text-decoration: underline;
+  text-underline-offset: 0.45em;
+}
+
+.studio-nav a:focus-visible, .studio-tools a:focus-visible {
+  outline: 2px solid var(--studio-gold);
+  outline-offset: 4px;
+}
+
+.studio-home {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top, #49345c, var(--studio-bg) 70%);
+  color: var(--studio-text);
+  font: 1rem/1.65 system-ui, sans-serif;
+}
+
+.studio-landing {
+  width: min(100% - 2rem, 50rem);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 7vw, 4rem) 0 2rem;
+}
+
+.studio-landing header { text-align: center; }
+.studio-emblem { color: var(--studio-gold); font-size: 1.6rem; }
+.studio-landing h1 {
+  margin: 0.15em 0;
+  font: 400 clamp(2rem, 9vw, 4rem)/1.2 Georgia, serif;
+  letter-spacing: 0.08em;
+}
+
+.studio-landing p, .studio-tools p { color: var(--studio-muted); }
+.studio-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.studio-tools a {
+  display: block;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--studio-border);
+  border-radius: 0.8rem;
+  background: var(--studio-panel);
+  color: var(--studio-gold);
+  text-decoration: none;
+}
+
+.studio-tools a:hover { border-color: var(--studio-gold); }
+.studio-tools h2 { margin: 0; font: 400 1.45rem Georgia, serif; }
+.studio-tools p { margin: 0.4rem 0 0; }
+
+.atelier header { padding: 1rem 0.75rem; }
+.atelier header h1 {
+  font-size: clamp(1.9rem, 7vw, 2.8rem);
+  letter-spacing: 0.04em;
+}
+
+.atelier .panel > details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--studio-text);
+}
+
+.atelier label { font-size: 0.875rem; }
+.atelier input, .atelier textarea, .atelier select { font-size: 1rem; }
+.atelier #libraryHandoffStatus { color: var(--studio-gold); }
+.atelier .actions > input[hidden] { display: none; }
