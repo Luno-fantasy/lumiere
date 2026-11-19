@@ -208,34 +208,6 @@ img {
   right:0;
   font-size:21px;
 }
-.collection-type {
-  display:flex;
-  height:100%;
-  flex-direction:column;
-  justify-content:space-between;
-  padding:28px;
-  color:#35283d;
-}
-.art-birthday {
-  background:#e7dde3;
-}
-.art-weekend {
-  background:#dfdfd5;
-}
-.type-overline {
-  font-size:9px;
-  letter-spacing:.14em;
-}
-.type-title {
-  font:italic 400 clamp(30px,3.7vw,52px)/1.04 var(--serif);
-  letter-spacing:-.045em;
-  overflow-wrap:anywhere;
-}
-.type-foot {
-  font:italic 17px/1.4 var(--serif);
-  border-top:1px solid #35283d33;
-  padding-top:17px;
-}
 .back {
   display:inline-flex;
   align-items:center;
@@ -635,20 +607,6 @@ img {
   .card-arrow {
     font-size:16px;
   }
-  .collection-type {
-    padding:16px;
-  }
-  .type-overline {
-    font-size:7px;
-    letter-spacing:.04em;
-  }
-  .type-title {
-    font-size:clamp(24px,6.4vw,44px);
-  }
-  .type-foot {
-    font-size:13px;
-    padding-top:12px;
-  }
   .collection-hero {
     padding:30px 0;
   }
@@ -747,19 +705,6 @@ img {
   .meta h2 {
     font-size:22px;
   }
-  .collection-type {
-    padding:12px;
-  }
-  .type-title {
-    font-size:20px;
-    overflow-wrap:normal;
-  }
-  .type-foot {
-    font-size:12px;
-  }
-  .type-overline {
-    font-size:6px;
-  }
   .section-heading h2 {
     font-size:23px;
   }
@@ -804,20 +749,12 @@ img {
   border-radius: var(--studio-radius);
   background: var(--surface);
 }
-.collection-card .visual { aspect-ratio: 5/4; }
+.collection-card .visual { aspect-ratio: 1 / 1; }
 .visual, .tile-visual {
   background: var(--studio-field);
   border-radius: var(--studio-radius);
 }
-.collection-type {
-  justify-content: center;
-  padding: 0.45rem;
-  text-align: center;
-  color: var(--gold);
-  background: radial-gradient(ellipse at top, #553c66, #2c1d39);
-}
-.type-overline, .type-foot, .card-arrow, .tile-visual:after { display: none; }
-.type-title { font-size: clamp(1.05rem, 4vw, 2.5rem); }
+.card-arrow, .tile-visual:after { display: none; }
 .meta { padding: 0.6rem; }
 .meta h2 { font-size: clamp(1.06rem, 4vw, 1.7rem); margin: 0.35rem 0; }
 .gallery { gap: clamp(0.9rem, 3vw, 1.5rem) clamp(0.6rem, 2vw, 1.15rem); }
