@@ -37,13 +37,19 @@ const tokenRules=[
 ];
 function classifyPrompt(raw){
  const bins={identity:[],appearance:[],outfit:[],accessories:[],pose:[],camera:[],background:[],style:[],other:[]};
+ const clothingContext=/\b(?:attire|uniform|jacket|shirt|coat|collar|lapels?|embroidery|trim|sleeves?|waistcoat|vest|suit|dress|garment|outfit|clothing|fur.trimmed|chest panels?|ceremonial|fashion|structured shoulders)\b/i;
+ const hairContext=/\b(?:hair|fringe|bangs|forehead|hairline|ponytail|hair locks|hair sections?)\b/i;
+ const beastContext=/\b(?:tiger|feline|beastman|fur|inner ear|ear shape|animal ears?|whiskers?|muzzle|claws?|horns?|wings?|tail)\b/i;
+ const accessoryContext=/\b(?:gemstone|gem|crystal|ornament|jewel|jewelry|jewellery|earrings?|necklace|pendant|brooch|ring|bracelet|piercing|choker|accessor(?:y|ies))\b/i;
+ const cameraContext=/\b(?:chest.up|upper chest visible|shoulders visible|face prominently featured|close.up|portrait|composition|framing|upper body|full body|waist.up|three.quarter view|angle|view|shot)\b/i;
+ const identityContext=/\b(?:charisma|personality|demeanor|temperament|occupation|profession|clan boss|yakuza|mafia)\b/i;
  raw.split(/[,\n]+/).map(x=>x.trim()).filter(Boolean).forEach(t=>{
-   const clothingContext=/\b(?:attire|uniform|jacket|shirt|coat|collar|lapels?|embroidery|trim|sleeves?|waistcoat|vest|suit|dress|garment|outfit|clothing|fur.trimmed|chest panels?|ceremonial)\b/i;
-   const hairContext=/\b(?:hair|fringe|bangs|forehead|hairline|ponytail|hair locks|hair sections?)\b/i;
-   const beastContext=/\b(?:tiger|feline|beastman|fur|inner ear|ear shape|animal ears?|whiskers?|muzzle|claws?|horns?|wings?|tail)\b/i;
    let category;
-   if(clothingContext.test(t))category='outfit';
+   if(cameraContext.test(t))category='camera';
+   else if(accessoryContext.test(t))category='accessories';
+   else if(clothingContext.test(t))category='outfit';
    else if(hairContext.test(t)||beastContext.test(t))category='appearance';
+   else if(identityContext.test(t))category='identity';
    else {const match=tokenRules.find(([_,re])=>re.test(t));category=match?match[0]:'other'}
    bins[category].push(t);
  });
