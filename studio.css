@@ -63,7 +63,25 @@
 }
 
 .studio-landing header { text-align: center; }
-.studio-emblem { color: var(--studio-gold); font-size: 1.6rem; }
+.studio-emblem {
+  display: block;
+  margin: 0 auto 0.85rem;
+  border-radius: 1.2rem;
+}
+
+.studio-landing .studio-subtitle {
+  margin: 0.5rem 0;
+  color: var(--studio-gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+
+.studio-footer {
+  margin-top: 1.25rem;
+  text-align: center;
+  color: var(--studio-muted);
+  font-size: 0.875rem;
+}
 .studio-landing h1 {
   margin: 0.15em 0;
   font: 400 clamp(2rem, 9vw, 4rem)/1.2 Georgia, serif;
