@@ -3,7 +3,7 @@
 物語の一瞬に、光を灯す。ÉTERNOAの姉妹サイトです。
 
 - `index.html` は共通の入口です。
-- `library/` に6コレクションのHTML、検索・コピー機能、サンプル画像を収録しています。
+- `library/` に5コレクションのHTML、検索・コピー機能、サンプル画像を収録しています。
 - `atelier.html` ではプロンプトの自動分解、キャラクターの管理、イベントCG用プロンプトの生成を行えます。
 
 公開先は [GitHub Pages](https://luno-fantasy.github.io/lumiere/) です。ビルドは不要です。

@@ -373,7 +373,7 @@ img {
 .weekend-bg,.idol-bg-1 {
   background:#e0e0d6;
 }
-.spring-bg,.sweet-bg-2,.gothic-bg-1 {
+.spring-bg,.sweet-bg-2 {
   background:#e7dce2;
 }
 .summer-bg,.idol-bg-2 {
@@ -382,10 +382,10 @@ img {
 .autumn-bg,.sweet-bg-1 {
   background:#e7ddd1;
 }
-.winter-bg,.sweet-bg-3,.gothic-bg-2 {
+.winter-bg,.sweet-bg-3 {
   background:#dedbe6;
 }
-.sweet-bg-0,.gothic-bg-3 {
+.sweet-bg-0 {
   background:#e2d6db;
 }
 .empty {
