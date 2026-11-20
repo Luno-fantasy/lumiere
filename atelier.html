@@ -38,14 +38,17 @@ const tokenRules=[
 function classifyPrompt(raw){
  const bins={identity:[],appearance:[],outfit:[],accessories:[],pose:[],camera:[],background:[],style:[],other:[]};
  const clothingContext=/\b(?:attire|uniform|jacket|shirt|coat|collar|lapels?|embroidery|trim|sleeves?|waistcoat|vest|suit|dress|garment|outfit|clothing|fur.trimmed|chest panels?|ceremonial|fashion|structured shoulders)\b/i;
- const hairContext=/\b(?:hair|fringe|bangs|forehead|hairline|ponytail|hair locks|hair sections?)\b/i;
- const beastContext=/\b(?:tiger|feline|beastman|fur|inner ear|ear shape|animal ears?|whiskers?|muzzle|claws?|horns?|wings?|tail)\b/i;
+ const hairContext=/\b(?:hair|fringe|bangs|forehead|hairline|ponytail|hair locks|hair sections?|mane|nape)\b/i;
+ const beastContext=/\b(?:tiger|lion|feline|beastman|fur|inner ear|ear shape|animal ears?|whiskers?|muzzle|claws?|horns?|wings?|tail)\b/i;
  const accessoryContext=/\b(?:gemstone|gem|crystal|ornament|jewel|jewelry|jewellery|earrings?|necklace|pendant|brooch|ring|bracelet|piercing|choker|accessor(?:y|ies))\b/i;
  const cameraContext=/\b(?:chest.up|upper chest visible|shoulders visible|face prominently featured|close.up|portrait|composition|framing|upper body|full body|waist.up|three.quarter view|angle|view|shot)\b/i;
  const identityContext=/\b(?:charisma|personality|demeanor|temperament|occupation|profession|clan boss|yakuza|mafia)\b/i;
  raw.split(/[,\n]+/).map(x=>x.trim()).filter(Boolean).forEach(t=>{
    let category;
-   if(cameraContext.test(t))category='camera';
+   if(/\b(?:partially exposed upper chest|open neckline|exposed collarbone|deep open collar)\b/i.test(t))category='outfit';
+   else if(/\b(?:chest.up composition|upper chest visible|shoulders visible)\b/i.test(t))category='camera';
+   else if(/\b(?:thick neck|well.defined chest|warm honey.gold undertones|lion mane.inspired hairstyle|sun.kissed skin|strong masculine proportions|confident smirk|bold charismatic appearance|powerful charismatic presence|confident seductive charm|regal masculine elegance)\b/i.test(t))category='appearance';
+   else if(cameraContext.test(t))category='camera';
    else if(accessoryContext.test(t))category='accessories';
    else if(clothingContext.test(t))category='outfit';
    else if(hairContext.test(t)||beastContext.test(t))category='appearance';
@@ -55,7 +58,7 @@ function classifyPrompt(raw){
  });
  return bins;
 }
-function growParsedField(el){if(!el)return;el.style.height='auto';el.style.height=Math.min(Math.max(el.scrollHeight,100),520)+'px';el.style.overflowY=el.scrollHeight>520?'auto':'hidden'}
+function growParsedField(el){if(!el)return;el.style.height='auto';const contentHeight=el.scrollHeight;el.style.height=Math.min(Math.max(contentHeight,110),260)+'px';el.style.overflowY=contentHeight>260?'scroll':'auto';el.style.webkitOverflowScrolling='touch'}
 function verifyImportBins(raw,bins){const original=raw.split(/[,\n]+/).map(x=>x.trim()).filter(Boolean);const output=Object.values(bins).flat();return original.length===output.length&&original.every((t,i)=>output.filter(x=>x===t).length===original.filter(x=>x===t).length)}
 function parseImport(){const raw=$('rawPrompt').value;if(!raw.trim()){status('取り込むプロンプトを入力してください');return}const bins=classifyPrompt(raw);$('parsedIdentity').value=bins.identity.join(', ');$('parsedAccessories').value=bins.accessories.join(', ');$('parsedBackground').value=bins.background.join(', ');$('parsedStyle').value=bins.style.join(', ');$('parsedAppearance').value=bins.appearance.join(', ');$('parsedOutfit').value=bins.outfit.join(', ');$('parsedPose').value=bins.pose.join(', ');$('parsedCamera').value=bins.camera.join(', ');$('parsedOther').value=bins.other.join(', ');parsedFields.filter(k=>k!=='rawPrompt').forEach(k=>growParsedField($(k)));$('parsedDetails').open=true;applyParsed();if(!$('quickName').value.trim())$('quickName').value=$('name').value;status(verifyImportBins(raw,bins)?'自動分解しました。元の項目はすべて保持されています。分類結果を確認・編集してください':'分類結果の照合に失敗しました。元プロンプトを確認してください')}
 function applyParsed(){$('appearance').value=$('parsedAppearance').value;$('outfit').value=$('parsedOutfit').value;update()}
